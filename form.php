@@ -22,29 +22,29 @@ include ("connection.php");
         
         <div class="input_field">
             <label for="fname">First Name</label>
-            <input type="text" class="input" name="fname">
+            <input type="text" class="input" name="fname" required>
         </div>
 
         <div class="input_field">
             <label for="lname">Last Name</label>
-            <input type="text" class="input"  name="lname">
+            <input type="text" class="input"  name="lname" required>
         </div>
 
         <div class="input_field">
             <label for="password">Password</label>
-            <input type="password" class="input"  name="password">
+            <input type="password" class="input"  name="password" required>
         </div>
 
         <div class="input_field">
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" class="input" name="con_password">
+            <input type="password" class="input" name="con_password" required>
         </div>
 
         <div class="input_field">
             <label for="gender">Gender</label>
             <div class="custom_select">
-            <select name="gender">
-                <option value = "not selected">Select</option>
+            <select name="gender" required>
+                <option value = "">Select</option>
                 <option vlaue = "male">Male</option>
                 <option value = "female">Female</option>
             </select>
@@ -53,22 +53,22 @@ include ("connection.php");
 
         <div class="input_field">
             <label for="email">Email Address</label>
-            <input type="text" class="input" name="email">
+            <input type="text" class="input" name="email" required>
         </div>
 
         <div class="input_field">
             <label for="phone">Phone Number</label>
-            <input type="text" class="input" name="phone">
+            <input type="text" class="input" name="phone" required>
         </div>
 
         <div class="input_field">
             <label for="address">Address</label>
-            <textarea class="textarea"  name="address"></textarea>
+            <textarea class="textarea" name="address" required></textarea>
         </div>
 
         <div class="input_field terms">
             <label class="check">
-            <input type="checkbox">
+            <input type="checkbox" required>
             <span class="checkmark"></span>
             </label>
             <p>Agree to Terms and Conditions</p>
