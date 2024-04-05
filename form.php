@@ -102,7 +102,7 @@ if(isset($_POST['reg_btn'])) {
     $data = mysqli_query($conn, $query);
 
     if($data) {
-        echo "Data Inserted into db";
+        echo "<script> alert('Data Inserted into db');</script>";
     } else {
         echo "Failed to insert data: " . mysqli_error($conn);
     }
