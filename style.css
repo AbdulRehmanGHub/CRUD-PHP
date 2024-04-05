@@ -9,6 +9,15 @@ body {
     padding: 0 10px;
 }
 
+.title h1{
+    margin: 20px 38%;
+    text-align: center;
+    border-radius: 15px;
+    background: #004f63;
+    color: #fff;
+    font-family: arial;
+}
+
 .container {
     background-color: #004f63; 
     color: #fff;   
@@ -17,15 +26,6 @@ body {
     margin: 20px auto;
     padding: 30px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}
-
-.container .title {
-    font-size: 26px;
-    font-weight: 600;
-    margin-bottom: 25px;
-    color:  rgb(144, 250, 58);
-    text-transform: uppercase;
-    text-align: center;
 }
 
 .container .form {

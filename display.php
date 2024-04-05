@@ -50,10 +50,11 @@ if($show_data != 0) {
     // $a = 1;
     ?>
 
-    <h1>Data Dispaly Page</h1>
+    <h1>Display Data Page</h1>
 
     <table border= 2 cellspacing = 6>
         <tr>
+            <th width="5%">ID</th>
             <th width="8%">First Name</th>
             <th width="8%">Last Name</th>
             <th width="7%">Gender</th>
@@ -70,12 +71,15 @@ if($show_data != 0) {
         // $a++;
 
         echo "<tr>
+                <td>".$result['id']."</td>
                 <td>".$result['fname']."</td>
                 <td>".$result['lname']."</td>
                 <td>".$result['gender']."</td>
                 <td>".$result['email']."</td>
                 <td>".$result['phone']."</td>
                 <td>".$result['address']."</td>
+
+                <td><a href='update_design.php?id=$result[id]'>Edit</a></td>
             </tr>";
 
     }
