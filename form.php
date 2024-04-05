@@ -96,6 +96,8 @@ if(isset($_POST['reg_btn'])) {
     $phone          = $_POST['phone'];
     $address        = $_POST['address'];
 
+    // if($fname != "" && $lname != "" && $password != "" && $con_password != "" && $gender != "" && $email != "" && $phone != "" && $address != "") {
+
     $query = "INSERT INTO form VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$address')";
     $data = mysqli_query($conn, $query);
 
@@ -105,4 +107,10 @@ if(isset($_POST['reg_btn'])) {
         echo "Failed to insert data: " . mysqli_error($conn);
     }
 }
+
+// else {
+//     echo "<script>alert('Fill the form to register!');</script>";
+// }
+// }
+
 ?>
