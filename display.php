@@ -1,3 +1,30 @@
+<html>
+    <head>
+        <title>Display</title>
+        <style>
+            body {
+                background: rgb(144, 250, 58);
+            }
+
+            h1{
+                margin: 20px 38%;
+                text-align: center;
+                border-radius: 15px;
+                background: #004f63;
+                color: #fff;
+                font-family: arial;
+            }
+
+            table {
+                background: #fff;
+                border-radius: 10px;
+                margin: 10px auto;
+                width: 80%;
+            }
+        </style>
+    </head>
+
+
 <?php
 include ("connection.php");
 error_reporting(0);
@@ -23,14 +50,17 @@ if($show_data != 0) {
     // $a = 1;
     ?>
 
-    <table border="2">
+    <h1>Data Dispaly Page</h1>
+
+    <table border= 2 cellspacing = 6>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
+            <th width="8%">First Name</th>
+            <th width="8%">Last Name</th>
+            <th width="7%">Gender</th>
+            <th width="10%">Email</th>
+            <th width="8%">Phone</th>
+            <th width="15%">Address</th>
+            <th width="10%">Actions</th>
         </tr>
     
     <?php
@@ -56,3 +86,4 @@ if($show_data != 0) {
 ?>
 
 </table>
+</html>

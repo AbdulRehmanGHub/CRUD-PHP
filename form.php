@@ -103,10 +103,10 @@ if(isset($_POST['reg_btn'])) {
 
     if($data) {
         echo "<script> alert('Data Inserted into db');</script>";
-    } else {
-        echo "Failed to insert data: " . mysqli_error($conn);
+        } else {
+            echo "<script> alert('Failed to insert data: ');</script>";
+        }
     }
-}
 
 // else {
 //     echo "<script>alert('Fill the form to register!');</script>";
