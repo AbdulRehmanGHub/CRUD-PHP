@@ -7,7 +7,7 @@ include ("connection.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP CRUD Operations</title>
+    <title>Registration Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -64,6 +64,21 @@ include ("connection.php");
         </div>
 
         <div class="input_field">
+            <label style="margin-right: 100px;" for="radio">Degree</label>
+            <input type="radio" name="deg" value="BSCS" required><label style="margin-left: 5px;">BSCS</label>
+            <input type="radio" name="deg" value="BSIT" required><label style="margin-left: 5px;">BSIT</label>
+            <input type="radio" name="deg" value="BSSE" required><label style="margin-left: 5px;">BSSE</label>
+            <input type="radio" name="deg" value="Other" required><label style="margin-left: 5px;">Other</label>
+        </div>
+
+        <div class="input_field">
+            <label for="checkbox" style="margin-right:75px;">Language</label>
+            <input type="checkbox" name="lang[]" value="English"><label style="margin-left: 5px;">English</label>
+            <input type="checkbox" name="lang[]" value="Urdu"><label style="margin-left: 5px;">Urdu</label>
+            <input type="checkbox" name="lang[]" value="Other"><label style="margin-left: 5px;">Other</label>
+        </div>
+
+        <div class="input_field">
             <label for="address">Address</label>
             <textarea class="textarea" name="address" required></textarea>
         </div>
@@ -87,6 +102,7 @@ include ("connection.php");
 
 <!-- PHP Area -->
 <?php
+error_reporting(0);
 
 if(isset($_POST['reg_btn'])) {
     $fname          = $_POST['fname'];
@@ -96,11 +112,17 @@ if(isset($_POST['reg_btn'])) {
     $gender         = $_POST['gender'];
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
+    $degree         = $_POST['deg'];
+    
+    $language       = $_POST['lang'];
+    $lang1 = implode(",", $language);
+    // echo $lang1;
+
     $address        = $_POST['address'];
 
     // if($fname != "" && $lname != "" && $password != "" && $con_password != "" && $gender != "" && $email != "" && $phone != "" && $address != "") {
 
-    $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$address')";
+    $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, degree, language, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$degree', '$lang1', '$address')";
     $data = mysqli_query($conn, $query);
 
     if($data) {

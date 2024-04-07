@@ -18,7 +18,7 @@ $result = mysqli_fetch_assoc($data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP CRUD Operations</title>
+    <title>Update Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,43 +34,75 @@ $result = mysqli_fetch_assoc($data);
         
         <div class="input_field">
             <label for="fname">First Name</label>
-            <input type="text" value=<?php echo $result['fname']; ?> class="input" name="fname" required>
+            <input type="text" class="input" name="fname" required value=<?php echo $result['fname']; ?> >
         </div>
 
         <div class="input_field">
             <label for="lname">Last Name</label>
-            <input type="text"  value=<?php echo $result['lname']; ?> class="input"  name="lname" required>
+            <input type="text" class="input" name="lname" required value=<?php echo $result['lname']; ?>>
         </div>
 
         <div class="input_field">
             <label for="password">Password</label>
-            <input type="password" value=<?php echo $result['password']; ?> class="input" name="password" required>
+            <input type="password"  class="input" name="password" required value=<?php echo $result['password']; ?>>
         </div>
 
         <div class="input_field">
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" value=<?php echo $result['con_password']; ?> class="input" name="con_password" required>
+            <input type="password" class="input" name="con_password" required value=<?php echo $result['con_password']; ?>>
         </div>
 
         <div class="input_field">
             <label for="gender">Gender</label>
             <div class="custom_select">
-            <select name="gender"  value=<?php echo $result['gender']; ?> required>
+            
+            <select name="gender" required>
                 <option value = "">Select</option>
-                <option vlaue = "male">Male</option>
-                <option value = "female">Female</option>
+                <option value = "male"
+                    <?php
+                        if($result['gender'] == 'male') {
+                            echo "selected";
+                        }
+                    ?>
+                    >Male
+                </option>
+                
+                <option value = "female"
+                    <?php
+                        if($result['gender'] == 'female') {
+                            echo "selected";
+                        }
+                    ?>
+                    >Female
+                </option>
             </select>
+            
             </div>
         </div>
 
         <div class="input_field">
             <label for="email">Email Address</label>
-            <input type="text" value=<?php echo $result['email']; ?> class="input" name="email" required>
+            <input type="text" class="input" name="email" required value=<?php echo $result['email']; ?>>
         </div>
 
         <div class="input_field">
             <label for="phone">Phone Number</label>
-            <input type="text" value=<?php echo $result['phone']; ?> class="input" name="phone" required>
+            <input type="text" class="input" name="phone" required value=<?php echo $result['phone']; ?>>
+        </div>
+
+        <div class="input_field">
+            <label for="radio" style="margin-right: 100px;">Degree</label>
+            <input type="radio" name="deg" value="BSCS" required><label style="margin-left: 5px;">BSCS</label>
+            <input type="radio" name="deg" value="BSIT" required><label style="margin-left: 5px;">BSIT</label>
+            <input type="radio" name="deg" value="BSSE" required><label style="margin-left: 5px;">BSSE</label>
+            <input type="radio" name="deg" value="Other" required><label style="margin-left: 5px;">Other</label>
+        </div>
+
+        <div class="input_field">
+            <label for="checkbox" style="margin-right:75px;">Language</label>
+            <input type="checkbox" name="lang[]" value="English"><label style="margin-left: 5px;">English</label>
+            <input type="checkbox" name="lang[]" value="Urdu"><label style="margin-left: 5px;">Urdu</label>
+            <input type="checkbox" name="lang[]" value="Other"><label style="margin-left: 5px;">Other</label>
         </div>
 
         <div class="input_field">
@@ -88,7 +120,7 @@ $result = mysqli_fetch_assoc($data);
         </div>
 
         <div class="input_field">
-            <input type="submit" value="Update" class="btn" name="reg_btn">
+            <input type="submit" value="Update" class="btn" name="update">
         </div>
         </div>
         </form>
@@ -99,7 +131,7 @@ $result = mysqli_fetch_assoc($data);
 <!-- PHP Area -->
 <?php
 
-if(isset($_POST['reg_btn'])) {
+if(isset($_POST['update'])) {
     $fname          = $_POST['fname'];
     $lname          = $_POST['lname'];
     $password       = $_POST['password'];
@@ -107,17 +139,33 @@ if(isset($_POST['reg_btn'])) {
     $gender         = $_POST['gender'];
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
+    $degree         = $_POST['deg'];
+    
+    
+    $language       = $_POST['lang'];
+    $lang1 = implode(",", $language);
+    // echo $lang1;
+
     $address        = $_POST['address'];
 
     // if($fname != "" && $lname != "" && $password != "" && $con_password != "" && $gender != "" && $email != "" && $phone != "" && $address != "") {
 
-    $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$address')";
+    // $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$address')";
+    
+    $query = "UPDATE form SET fname='$fname', lname='$lname', password='$password', con_password='$con_password', gender='$gender', email='$email', phone='$phone', degree='$degree', language='$lang1' ,address='$address' WHERE id='$id'";
+    
     $data = mysqli_query($conn, $query);
 
     if($data) {
-        echo "<script> alert('Data Inserted into db');</script>";
+        echo "<script> alert('Data Updated Successfully!');</script>";
+
+        ?>
+
+        <meta http-equiv= "refresh" content = "0; url = http://localhost/crud/display.php" />
+
+        <?php
         } else {
-            echo "<script> alert('Failed to insert data: ');</script>";
+            echo "<script> alert('Failed to Update Data: ');</script>";
         }
     }
 

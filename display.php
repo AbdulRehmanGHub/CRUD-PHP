@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Display</title>
+        <title>Display Page</title>
         <style>
             body {
                 background: rgb(144, 250, 58);
@@ -19,7 +19,24 @@
                 background: #fff;
                 border-radius: 10px;
                 margin: 10px auto;
-                width: 80%;
+                width: 95%;
+            }
+
+            .edit_btn, .delete_btn {
+                background: green;
+                color: #fff;
+                width: 45%;
+                height: 25px;
+                font-weight: bold;
+                cursor: pointer;
+                border: 0;
+                border-radius: 7px;
+                outline: none;
+                margin: 2px;
+            }
+
+            .delete_btn {
+                background: red;
             }
         </style>
     </head>
@@ -60,6 +77,8 @@ if($show_data != 0) {
             <th width="7%">Gender</th>
             <th width="10%">Email</th>
             <th width="8%">Phone</th>
+            <th width="6%">Degree</th>
+            <th width="10%">Language</th>
             <th width="15%">Address</th>
             <th width="10%">Actions</th>
         </tr>
@@ -77,9 +96,19 @@ if($show_data != 0) {
                 <td>".$result['gender']."</td>
                 <td>".$result['email']."</td>
                 <td>".$result['phone']."</td>
+                <td>".$result['degree']."</td>
+                <td>".$result['language']."</td>
                 <td>".$result['address']."</td>
 
-                <td><a href='update_design.php?id=$result[id]'>Edit</a></td>
+                <td>
+                    <a href='update.php?id=$result[id]'>
+                    <input type='submit' value='Edit' class='edit_btn'>
+                    </a>
+                    
+                    <a href='delete.php?id=$result[id]'>
+                    <input type='submit' value='Delete' class='delete_btn' onclick= 'return checkdelete()'>
+                    </a>
+                </td>
             </tr>";
 
     }
@@ -91,3 +120,9 @@ if($show_data != 0) {
 
 </table>
 </html>
+
+<script>
+    function checkdelete() {
+        return confirm(' Do you really want to delete this entry? ');
+    }
+</script>
