@@ -11,6 +11,9 @@ $show_data = mysqli_num_rows($data);
 
 $result = mysqli_fetch_assoc($data);
 
+$language = $result['language'];
+$language1 = explode(",", $language);
+
 ?>
 
 <!DOCTYPE html>
@@ -92,17 +95,69 @@ $result = mysqli_fetch_assoc($data);
 
         <div class="input_field">
             <label for="radio" style="margin-right: 100px;">Degree</label>
-            <input type="radio" name="deg" value="BSCS" required><label style="margin-left: 5px;">BSCS</label>
-            <input type="radio" name="deg" value="BSIT" required><label style="margin-left: 5px;">BSIT</label>
-            <input type="radio" name="deg" value="BSSE" required><label style="margin-left: 5px;">BSSE</label>
-            <input type="radio" name="deg" value="Other" required><label style="margin-left: 5px;">Other</label>
+            
+            <input type="radio" name="deg" value="BSCS" required
+            <?php
+                if($result['degree'] == 'BSCS') {
+                    echo "checked";
+                }
+            ?>
+            ><label style="margin-left: 5px;">BSCS</label>
+
+            <input type="radio" name="deg" value="BSIT" required
+                <?php
+                    if($result['degree'] == 'BSIT') {
+                        echo "checked";
+                    }
+                ?>
+            ><label style="margin-left: 5px;">BSIT</label>
+
+            <input type="radio" name="deg" value="BSSE" required
+                <?php
+                    if($result['degree'] == 'BSSE') {
+                        echo "checked";
+                    }
+                ?>
+            ><label style="margin-left: 5px;">BSSE</label>
+
+            <input type="radio" name="deg" value="Other" required
+                <?php
+                    if($result['degree'] == 'Other') {
+                        echo "checked";
+                    }
+                ?>
+            ><label style="margin-left: 5px;">Other</label>
         </div>
 
         <div class="input_field">
             <label for="checkbox" style="margin-right:75px;">Language</label>
-            <input type="checkbox" name="lang[]" value="English"><label style="margin-left: 5px;">English</label>
-            <input type="checkbox" name="lang[]" value="Urdu"><label style="margin-left: 5px;">Urdu</label>
-            <input type="checkbox" name="lang[]" value="Other"><label style="margin-left: 5px;">Other</label>
+            
+            <input type="checkbox" name="lang[]" value="English"
+                <?php
+                    if(in_array('English', $language1)) {
+                        echo "checked";
+                    }
+                ?>
+            >
+            <label style="margin-left: 5px;">English</label>
+            
+            <input type="checkbox" name="lang[]" value="Urdu"
+                <?php
+                    if(in_array('Urdu', $language1)) {
+                        echo "checked";
+                    }
+                ?>
+            >
+            <label style="margin-left: 5px;">Urdu</label>
+            
+            <input type="checkbox" name="lang[]" value="Other"
+                <?php
+                    if(in_array('Other', $language1)) {
+                        echo "checked";
+                    }
+                ?>
+            >
+            <label style="margin-left: 5px;">Other</label>
         </div>
 
         <div class="input_field">
@@ -152,7 +207,7 @@ if(isset($_POST['update'])) {
 
     // $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$address')";
     
-    $query = "UPDATE form SET fname='$fname', lname='$lname', password='$password', con_password='$con_password', gender='$gender', email='$email', phone='$phone', degree='$degree', language='$lang1' ,address='$address' WHERE id='$id'";
+    $query = "UPDATE form SET fname='$fname', lname='$lname', password='$password', con_password='$con_password', gender='$gender', email='$email', phone='$phone', degree='$degree', language='$lang1', address='$address' WHERE id='$id'";
     
     $data = mysqli_query($conn, $query);
 
