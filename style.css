@@ -177,3 +177,13 @@ body {
         flex-direction: row;
     }
 }
+
+.login_here {
+    text-align: center;
+    margin-top: 22px;
+}
+
+.login_here a {
+    color:rgb(144, 250, 58);
+    text-decoration: none;
+}

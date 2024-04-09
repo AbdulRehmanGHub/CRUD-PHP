@@ -17,11 +17,16 @@ include ("connection.php");
         </div>
 
     <div class="container">
-        <form action="#" method="POST">
+        <form action="#"method="POST" enctype="multipart/form-data">
         
 
         <div class="form">
         
+        <div class="input_field" style="width: 75%;">
+            <label for="IMG">Upload Image</label>
+            <input type="file" name="img_file" required>
+        </div>
+
         <div class="input_field">
             <label for="fname">First Name</label>
             <input type="text" class="input" name="fname" required>
@@ -94,6 +99,8 @@ include ("connection.php");
         <div class="input_field">
             <input type="submit" value="Register" class="btn" name="reg_btn">
         </div>
+
+        <div class="login_here"> Already Have an Account ? <a href="login.php"> Login Here</a></div>
         </div>
         </form>
     </div>
@@ -105,6 +112,12 @@ include ("connection.php");
 error_reporting(0);
 
 if(isset($_POST['reg_btn'])) {
+
+    $filename = $_FILES["img_file"]["name"];
+    $tempname = $_FILES["img_file"]["tmp_name"];
+    $folder = "img/".$filename;
+    move_uploaded_file($tempname, $folder);
+
     $fname          = $_POST['fname'];
     $lname          = $_POST['lname'];
     $password       = $_POST['password'];
@@ -122,7 +135,7 @@ if(isset($_POST['reg_btn'])) {
 
     // if($fname != "" && $lname != "" && $password != "" && $con_password != "" && $gender != "" && $email != "" && $phone != "" && $address != "") {
 
-    $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, degree, language, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$degree', '$lang1', '$address')";
+    $query = "INSERT INTO form (img_file, fname, lname, password, con_password, gender, email, phone, degree, language, address) VALUES ('$folder','$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$degree', '$lang1', '$address')";
     $data = mysqli_query($conn, $query);
 
     if($data) {

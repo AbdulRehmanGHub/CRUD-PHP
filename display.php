@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+echo "Welcome! " .$_SESSION['email'];
+
+?>
+
 <html>
     <head>
         <title>Display Page</title>
@@ -19,7 +26,7 @@
                 background: #fff;
                 border-radius: 10px;
                 margin: 10px auto;
-                width: 95%;
+                width: 100%;
             }
 
             .edit_btn, .delete_btn {
@@ -71,7 +78,8 @@ if($show_data != 0) {
 
     <table border= 2 cellspacing = 6>
         <tr>
-            <th width="5%">ID</th>
+            <th width="3%">ID</th>
+            <th width="3%">Image</th>
             <th width="8%">First Name</th>
             <th width="8%">Last Name</th>
             <th width="7%">Gender</th>
@@ -91,6 +99,9 @@ if($show_data != 0) {
 
         echo "<tr>
                 <td>".$result['id']."</td>
+
+                <td><img src= '".$result['img_file']."' height='50px; width=50px;'></td>
+
                 <td>".$result['fname']."</td>
                 <td>".$result['lname']."</td>
                 <td>".$result['gender']."</td>

@@ -31,9 +31,14 @@ $language1 = explode(",", $language);
     </div>
 
     <div class="container">
-        <form action="#" method="POST">
+        <form action="#" method="POST" enctype="multipart/form-data">
 
         <div class="form">
+
+        <div class="input_field" style="width: 75%;">
+            <label for="IMG">Upload Image</label>
+            <input type="file" name="img_file" required>
+        </div>
         
         <div class="input_field">
             <label for="fname">First Name</label>
@@ -187,6 +192,12 @@ $language1 = explode(",", $language);
 <?php
 
 if(isset($_POST['update'])) {
+
+    $filename = $_FILES["img_file"]["name"];
+    $tempname = $_FILES["img_file"]["tmp_name"];
+    $folder = "img/".$filename;
+    move_uploaded_file($tempname, $folder);
+
     $fname          = $_POST['fname'];
     $lname          = $_POST['lname'];
     $password       = $_POST['password'];
@@ -207,7 +218,7 @@ if(isset($_POST['update'])) {
 
     // $query = "INSERT INTO form (fname, lname, password, con_password, gender, email, phone, address) VALUES ('$fname', '$lname', '$password', '$con_password', '$gender', '$email', '$phone', '$address')";
     
-    $query = "UPDATE form SET fname='$fname', lname='$lname', password='$password', con_password='$con_password', gender='$gender', email='$email', phone='$phone', degree='$degree', language='$lang1', address='$address' WHERE id='$id'";
+    $query = "UPDATE form SET img_file='$folder', fname='$fname', lname='$lname', password='$password', con_password='$con_password', gender='$gender', email='$email', phone='$phone', degree='$degree', language='$lang1', address='$address' WHERE id='$id'";
     
     $data = mysqli_query($conn, $query);
 
