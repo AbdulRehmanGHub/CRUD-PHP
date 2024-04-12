@@ -1,8 +1,11 @@
 <?php
 
 session_start();
-echo "Welcome! " .$_SESSION['email'];
-
+if(isset($_SESSION['email'])) {
+    echo "Welcome ".$_SESSION['email'];
+} else {
+    echo "Welcome Guest!";
+}
 ?>
 
 <html>

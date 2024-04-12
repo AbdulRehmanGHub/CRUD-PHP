@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,11 +152,14 @@ if(isset($_POST['login_btn'])) {
     // echo $total;
 
     if($total == 1) {
+        echo "<script> alert('Login Success!')</script>";
+
         $_SESSION['email'] = $email;
         header('location:display.php');
+        exit();
 
     } else {
-        echo "failed to login";
+        echo "<script> alert('failed to login')</script>";
     }
 
 }
