@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-if(isset($_SESSION['email'])) {
-    echo "Welcome ".$_SESSION['email'];
-} else {
-    echo "Welcome Guest!";
-}
+// if(isset($_SESSION['email'])) {
+//     echo "Welcome ".$_SESSION['email'];
+// } else {
+//     echo "Welcome Guest!";
+// }
 ?>
 
 <html>
@@ -48,6 +48,17 @@ if(isset($_SESSION['email'])) {
             .delete_btn {
                 background: red;
             }
+
+            .logout_btn input{
+                background: purple;
+                color: #fff;
+                width: 80px;
+                height: 25px;
+                border-radius: 7px;
+                cursor: pointer;
+                margin-top: 20px;
+                margin-left: 45%;
+            }
         </style>
     </head>
 
@@ -55,6 +66,14 @@ if(isset($_SESSION['email'])) {
 <?php
 include ("connection.php");
 error_reporting(0);
+
+$userprofile = $_SESSION['email'];
+
+if($userprofile == true) {
+    
+}else {
+    header('location:login.php');
+}
 
 $query = "SELECT * FROM form";
 $data = mysqli_query($conn, $query);
@@ -133,6 +152,11 @@ if($show_data != 0) {
 ?>
 
 </table>
+
+<div class="logout_btn">
+<a href="logout.php"><input type="submit" value="Logout" name="logout_btn"></a>
+</div>
+
 </html>
 
 <script>
